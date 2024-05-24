@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+
+</head>
+<style>
+  html {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#506953, #7c8ea2);
+  }
+
+
+
+  .login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(226, 220, 220, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(171, 92, 120, 0.6);
+    border-radius: 10px;
+  }
+
+  .login-box .user-box {
+    position: relative;
+  }
+
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+  .login-box .user-box input:focus~label,
+  .login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #5f5cb3;
+    font-size: 12px;
+  }
+
+  .form-link {
+
+    display: inline-block;
+    padding: 10px 20px;
+    color: #a3d9dc;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .2s;
+    /* margin-top: 40px;     */
+    letter-spacing: 4px
+  }
+
+  .form-link:hover {
+    background: #a97b92;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #062628,
+  }
+</style>
+
+<body>
+  <div class="login-box">
+    <h2>Login Page</h2>
+
+    <form action="" id="form">
+      <div class="user-box">
+        <input type="text" name="" required="" id="username">
+        <label>Username</label>
+        <p id="p1" style="color: red; margin-top: 2px;"></p>
+      </div>
+      <div class="user-box">
+        <input type="email" name="" required="" id="email">
+        <label>Email</label>
+        <p id="p2" style="color: red; margin-top: 2px;"></p>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" required="" id="password">
+        <label>Password</label>
+        <p id="p3" style="color: red; margin-top: 2px;"></p>
+        <p id="cnf" style="color: red; margin-top: 2px;"></p>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" required="" id="confirm-password">
+        <label>confirm Password</label>
+        <p id="p4" style="color: red; margin-top: 2px;"></p>
+      </div>
+      <p id="p5" style="color: red; margin-top: 2px;"></p>
+      <a href="#" class="form-link" onclick="save()"> Submit
+      </a>
+
+    </form>
+  </div>
+  </div>
+
+
+</body>
+<script>
+
+  function save() {
+    let username = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+    let passsword = document.getElementById("password").value;
+    let confirmPasssword = document.getElementById("confirm-password").value;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (username == "") {
+      let res1 = document.getElementById("p1");
+      res1.innerHTML = "Username required"
+    }
+    else if (email == "") {
+      let res2 = document.getElementById("p2");
+      res2.innerHTML = "Email cannot blank";
+    }
+    else if (!emailRegex.test(email)) {
+      let res2 = document.getElementById("p2");
+      res2.innerHTML = "Enter proper Email";
+    }
+    else if ((passsword == "")) {
+      let res3 = document.getElementById("p3");
+      res3.innerHTML = "Enter valid password";
+    }
+    else if (passsword.length < 8 || passsword.length > 16) {
+      let res3 = document.getElementById("p3");
+      res3.innerHTML = " must contain 8 character";
+    }
+    else if (confirmPasssword != passsword) {
+      let res4 = document.getElementById("p4");
+      res4.innerHTML = "Password must be same";
+      res4.style.color = "red";
+    }
+    else {
+      let res4 = document.getElementById("p4");
+      res4.innerHTML = " login success";
+      res4.style.color = "green";
+      window.location.replace("submit.html");
+    }
+  }
+</script>
+
+</html>
